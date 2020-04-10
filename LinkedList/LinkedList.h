@@ -51,13 +51,11 @@ public:
 
 	void clear(void) override
 	{
-		Node *current = head;
-		Node *next = head;
-		while (current != nullptr)
+		while (head != nullptr)
 		{
-			next = current->next;
-			delete current;
-			current = next;
+			Node *next = head->next;
+			delete head;
+			head = next;
 		}
 	}
 
@@ -77,7 +75,7 @@ public:
 		std::stringstream ss;
 		while (current != nullptr)
 		{
-			ss << current->data << " ";
+			ss << " " << current->data;
 			current = current->next;
 		}
 

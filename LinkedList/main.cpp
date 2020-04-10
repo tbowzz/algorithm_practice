@@ -1,9 +1,18 @@
+#ifdef _MSC_VER
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+#define VS_MEM_CHECK _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#else
+#define VS_MEM_CHECK
+#endif
+
 #include <stdio.h>
 #include <fstream>
 #include "LinkedList.h"
 
 int main(int argc, char **argv)
 {
+	VS_MEM_CHECK;
 	if (argc != 3)
 	{
 		printf("USAGE: ./LinkedList <inputfile> <outputfile>\n");
@@ -42,17 +51,25 @@ int main(int argc, char **argv)
 			{
 				linkedList->push_front(parameters);
 			}
-			out << line << std::endl;
+			out << line << "\n";
 		}
 		else if (command == "PrintList")
 		{
-			out << command << " ";
-			out << linkedList->toString() << std::endl;
+			out << command;
+			std::string output = linkedList->toString();
+			if (output.empty())
+			{
+				out << " Empty!" << "\n";
+			}
+			else
+			{
+				out << output << "\n";
+			}
 		}
 		else if (command == "Clear")
 		{
 			linkedList->clear();
-			out << command << " " << "OK" << std::endl;
+			out << command << " " << "OK" << "\n";
 		}
 		else if (command == "Size")
 		{
