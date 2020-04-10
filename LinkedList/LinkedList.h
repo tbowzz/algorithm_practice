@@ -5,33 +5,89 @@
 #ifndef LINKEDLIST_LINKEDLIST_H
 #define LINKEDLIST_LINKEDLIST_H
 
+#include <sstream>
 #include "LinkedListInterface.h"
 
 template<typename T>
 class LinkedList : public LinkedListInterface<T>
 {
 public:
-	void push_front(const T &value) override;
+	LinkedList() : head(nullptr) {}
 
-	void pop_front(void) override;
+	void push_front(const T &value) override
+	{
+		Node *node = new Node();
+		node->data = value;
+		if (head)
+		{
+			node->next = (Node*)head;
+			head = (Node*)node;
+		}
+		else
+		{
+			head = node;
+		}
+	}
 
-	T &front(void) override;
+	void pop_front(void) override
+	{
 
-	bool empty(void) const override;
+	}
 
-	void remove(const T &value) override;
+	T &front(void) override
+	{
+		return head->data;
+	}
 
-	void clear(void) override;
+	bool empty(void) const override
+	{
+		return false;
+	}
 
-	void reverse(void) override;
+	void remove(const T &value) override
+	{
 
-	size_t size(void) const override;
+	}
 
-	std::string toString(void) const override;
+	void clear(void) override
+	{
+		Node *current = head;
+		Node *next = head;
+		while (current != nullptr)
+		{
+			next = current->next;
+			delete current;
+			current = next;
+		}
+	}
+
+	void reverse(void) override
+	{
+
+	}
+
+	size_t size(void) const override
+	{
+		return 0;
+	}
+
+	std::string toString(void) const override
+	{
+		Node *current = (Node*)head;
+		std::stringstream ss;
+		while (current != nullptr)
+		{
+			ss << current->data << " ";
+			current = current->next;
+		}
+
+		return ss.str();
+	}
 
 private:
 	struct Node
 	{
+		Node() : next(nullptr) {}
 		T data;
 		struct Node *next;
 	};
