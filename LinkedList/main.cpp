@@ -73,11 +73,19 @@ int main(int argc, char **argv)
 		}
 		else if (command == "Size")
 		{
-
+			out << command << " " << linkedList->size() << "\n";
 		}
 		else if (command == "Empty")
 		{
-
+			out << command;
+			if (linkedList->empty())
+			{
+				out << " true" << "\n";
+			}
+			else
+			{
+				out << " false" << "\n";
+			}
 		}
 		else if (command == "First")
 		{

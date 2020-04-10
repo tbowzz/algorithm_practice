@@ -41,7 +41,11 @@ public:
 
 	bool empty(void) const override
 	{
-		return false;
+		if (head)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	void remove(const T &value) override
@@ -66,7 +70,14 @@ public:
 
 	size_t size(void) const override
 	{
-		return 0;
+		size_t size = 0;
+		Node *current = head;
+		while (current != nullptr)
+		{
+			size++;
+			current = current->next;
+		}
+		return size;
 	}
 
 	std::string toString(void) const override
