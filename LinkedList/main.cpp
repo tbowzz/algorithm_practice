@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 		}
 		else if (command == "First")
 		{
-
+			out << command << " " << linkedList->front() << "\n";
 		}
 		else if (command == "Delete")
 		{

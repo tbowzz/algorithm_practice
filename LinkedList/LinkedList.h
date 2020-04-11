@@ -41,11 +41,7 @@ public:
 
 	bool empty(void) const override
 	{
-		if (head)
-		{
-			return false;
-		}
-		return true;
+		return head == nullptr;
 	}
 
 	void remove(const T &value) override
